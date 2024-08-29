@@ -12,7 +12,7 @@ public class ChessMatch {
 
     public ChessMatch() {
         board = new Board(8, 8);
-        intialSetup();
+        initialSetup();
     }
 
     public ChessPiece[][] getPieces(){
@@ -29,6 +29,7 @@ public class ChessMatch {
         Position source = sourcePosition.toPosition();
         Position target = targetPosition.toPosition();
         validateSourcePosition(source);
+        validateTargetPosition(source, target);
         Piece capturedPiece = makeMove(source, target);
         //feito um downcasting para Chesspiece pois a peça capturada é do tipo Piece
         return (ChessPiece) capturedPiece;
@@ -43,10 +44,17 @@ public class ChessMatch {
 
     private void validateSourcePosition(Position position) {
         if (!board.thereIsAPiece(position)) {
-            throw new ChessException("There is no piece on ource position");
+            throw new ChessException("There is no piece on source position");
         }
         if (!board.piece(position).isThereAnyPossibleMove()) {
             throw new ChessException("There is no possible moves for the chosen piece");
+        }
+    }
+
+    private void validateTargetPosition(Position source, Position target) {
+        // se pra peça de origem a posição de destino não é um movimento possível então vai lançar uma exceção
+        if (!board.piece(source).possibleMove(target)) {
+            throw new ChessException("The chosen piece can't move to target position");
         }
     }
 
@@ -54,7 +62,7 @@ public class ChessMatch {
         board.placePiece(piece, new ChessPosition(column, row).toPosition());
     }
 
-    private void intialSetup() {
+    private void initialSetup() {
 
         placeNewPiece('c', 1, new Rook(board, Color.WHITE));
         placeNewPiece('c', 2, new Rook(board, Color.WHITE));

@@ -3,16 +3,16 @@ package boardgame;
 public abstract class Piece {
 
     protected Position position;
-    private Board bord;
+    private Board board;
 
-    public Piece(Board bord) {
-        this.bord = bord;
+    public Piece(Board board) {
+        this.board = board;
         position = null;
     }
 
     //somente classes dentro do mesmo pacote e subclasses que vão consegir acessar o taboleiro
-    protected Board getBord() {
-        return bord;
+    protected Board getBoard() {
+        return board;
     }
 
     //métodos retornando uma matriz
