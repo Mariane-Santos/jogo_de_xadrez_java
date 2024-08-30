@@ -8,8 +8,8 @@ import chess.Color;
 
 public class King extends ChessPiece {
 
-    public King(Board bord, Color color) {
-        super(bord, color);
+    public King(Board board, Color color) {
+        super(board, color);
     }
 
     @Override
@@ -29,49 +29,49 @@ public class King extends ChessPiece {
         Position p = new Position(0,0);
 
         //Direções que o Rei pode se mover ACIMA
-        p.setValues(getBoard().getRows() -1, position.getColumn());
+        p.setValues(position.getRow() - 1, position.getColumn() );
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         //Direções que o Rei pode se mover ABAIXO
-        p.setValues(getBoard().getRows() +1, position.getColumn());
+        p.setValues(position.getRow() + 1, position.getColumn());
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         //Direções que o Rei pode se mover a ESQUERDA
-        p.setValues(getBoard().getRows(), position.getColumn() -1);
+        p.setValues(position.getRow(), position.getColumn() - 1);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         //Direções que o Rei pode se mover a DIREITA
-        p.setValues(getBoard().getRows(), position.getColumn() +1);
+        p.setValues(position.getRow(), position.getColumn() + 1);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         //Direções que o Rei pode se mover a NOROESTE - NW
-        p.setValues(position.getRow() -1, position.getColumn() -1);
+        p.setValues(position.getRow() - 1, position.getColumn() - 1);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         //Direções que o Rei pode se mover a NORDESTE - NE
-        p.setValues(position.getRow() -1, position.getColumn() +1);
+        p.setValues(position.getRow() - 1, position.getColumn() + 1);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         //Direções que o Rei pode se mover a SUDOESTE - SW
-        p.setValues(position.getRow() +1, position.getColumn() -1);
+        p.setValues(position.getRow() + 1, position.getColumn() - 1);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         //Direções que o Rei pode se mover a SUDESTE - SE
-        p.setValues(position.getRow() +1, position.getColumn() +1);
+        p.setValues(position.getRow() + 1, position.getColumn() + 1);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
